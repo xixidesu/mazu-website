@@ -3,9 +3,11 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useLang } from "@/context/LanguageContext";
+import type { Language } from "@/context/LanguageContext";
 
 export default function ConfucianismPlacesPage() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
+  const tArr = (en: string[], zh: string[]) => (lang as Language) === "zh" ? zh : en;
 
   const sites = [
     {
@@ -125,7 +127,7 @@ export default function ConfucianismPlacesPage() {
                   <div className="border-t border-[#e8d5b5] pt-4">
                     <p className="text-[#a08060] text-xs mb-2 tracking-wider">{t("Highlights", "主要景点")}</p>
                     <div className="flex flex-wrap gap-2">
-                      {t(site.highlights.en, site.highlights.zh).map((h: string) => (
+                      {tArr(site.highlights.en, site.highlights.zh).map((h: string) => (
                         <span key={h} className="text-xs px-2 py-1 bg-[#fdf0e0] text-[#6b3d00] rounded-md border border-[#e8d5b5]">{h}</span>
                       ))}
                     </div>
