@@ -48,8 +48,22 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-[#c9a84c]/20 text-center text-[#a08060] text-xs tracking-widest">
-          <p>{t("Goddesses in China · Exploring Chinese Spiritual Heritage", "中华神明 · 探索中国精神文化遗产")}</p>
+        <div className="mt-10 pt-6 border-t border-[#c9a84c]/20 text-center space-y-2">
+          <p className="text-[#a08060] text-xs tracking-widest">
+            {t("Goddesses in China · Exploring Chinese Spiritual Heritage", "中华神明 · 探索中国精神文化遗产")}
+          </p>
+          <p className="text-[#6a4a30] text-xs leading-5 max-w-xl mx-auto">
+            {t(
+              "This website is created by Xixi out of personal interest and passion for Chinese culture. All content is for educational purposes only. If any content infringes upon your rights, please contact the site owner and it will be promptly removed.",
+              "本网站由 Xixi 出于个人兴趣与对中华文化的热爱制作，所有内容仅供学习参考。如有任何内容侵犯您的权益，请联系站主，将第一时间予以删除处理。"
+            )}
+          </p>
+          <p className="text-[#4a3020] text-xs">
+            {t("Contact: ", "联系站主：")}
+            <a href="mailto:xzyd1995@gmail.com" className="hover:text-[#c9a84c] transition-colors underline underline-offset-2">
+              xzyd1995@gmail.com
+            </a>
+          </p>
         </div>
       </div>
     </footer>
