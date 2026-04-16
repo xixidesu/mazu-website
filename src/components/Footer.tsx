@@ -58,12 +58,6 @@ export default function Footer() {
               "本网站由 Xixi 出于个人兴趣与对中华文化的热爱制作，所有内容仅供学习参考。如有任何内容侵犯您的权益，请联系站主，将第一时间予以删除处理。"
             )}
           </p>
-          <p className="text-[#4a3020] text-xs">
-            {t("Contact: ", "联系站主：")}
-            <a href="mailto:xzyd1995@gmail.com" className="hover:text-[#c9a84c] transition-colors underline underline-offset-2">
-              xzyd1995@gmail.com
-            </a>
-          </p>
         </div>
       </div>
     </footer>
