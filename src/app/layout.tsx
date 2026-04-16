@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Serif_SC } from "next/font/google";
+import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
 const notoSerifSC = Noto_Serif_SC({
@@ -9,9 +10,9 @@ const notoSerifSC = Noto_Serif_SC({
 });
 
 export const metadata: Metadata = {
-  title: "妈祖文化 — 海上守护神",
-  description: "探索妈祖文化的历史渊源、民间传说与海洋信仰，感受千年妈祖精神的传承与魅力。",
-  keywords: "妈祖,海神,妈祖文化,湄洲岛,海上保护神,闽南文化",
+  title: "Goddesses in China — Chinese Cultural Traditions",
+  description: "Explore the rich spiritual and cultural traditions of China, including Mazu, Confucianism, Taoism, and more.",
+  keywords: "Mazu, Confucianism, Taoism, Guan Yu, Chinese culture, Chinese religion, Chinese mythology",
 };
 
 export default function RootLayout({
@@ -20,9 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" className={`${notoSerifSC.variable} h-full`}>
+    <html lang="en" className={`${notoSerifSC.variable} h-full`}>
       <body className="min-h-full flex flex-col font-[family-name:var(--font-noto-serif-sc)]">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

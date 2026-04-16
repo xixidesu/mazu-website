@@ -1,178 +1,163 @@
+"use client";
+
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useLang } from "@/context/LanguageContext";
 
-const highlights = [
+const traditions = [
   {
-    icon: "🌊",
-    title: "海上守护",
-    desc: "妈祖作为海上保护神，千百年来护佑着无数渔民与航海者平安归来，被誉为【海上女神】。",
+    href: "/mazu",
+    en: { name: "Mazu", subtitle: "Goddess of the Sea", desc: "The divine protector of sailors and fishermen, Mazu has been worshipped for over a thousand years across coastal China and the Chinese diaspora worldwide." },
+    zh: { name: "妈祖", subtitle: "海上女神", desc: "海上渔民与航海者的神圣守护神，妈祖信仰绵延千年，遍及中国沿海及全球华人社区。" },
+    color: "from-[#1a3a5c] to-[#0d5c8a]",
+    accent: "#4a9eca",
+    icon: "⛵",
+    badge: { en: "UNESCO Heritage", zh: "联合国非遗" },
   },
   {
-    icon: "🏛️",
-    title: "千年历史",
-    desc: "妈祖信仰起源于宋代福建湄洲岛，距今已有超过一千年的历史，是中华海洋文化的重要组成部分。",
+    href: "/confucianism",
+    en: { name: "Confucianism", subtitle: "The Philosophy of Harmony", desc: "Founded by Confucius (551–479 BC), this ethical and philosophical system has guided Chinese society, governance, and family life for over two millennia." },
+    zh: { name: "儒家", subtitle: "和谐之道", desc: "由孔子（前551–前479年）创立，儒家伦理哲学体系两千余年来深刻影响着中国社会、政治与家庭生活。" },
+    color: "from-[#2d1a00] to-[#5c3800]",
+    accent: "#c9a84c",
+    icon: "📜",
+    badge: { en: "UNESCO Heritage", zh: "联合国非遗" },
   },
   {
-    icon: "🌏",
-    title: "世界传播",
-    desc: "妈祖信仰随华人足迹遍及全球，在东南亚、台湾、香港、澳门及世界各地均建有妈祖宫庙。",
+    href: "/taoism",
+    soon: true,
+    en: { name: "Taoism", subtitle: "The Way of Nature", desc: "An ancient philosophical and religious tradition emphasizing harmony with the Tao — the fundamental principle underlying the universe." },
+    zh: { name: "道家", subtitle: "自然之道", desc: "古老的哲学与宗教传统，强调与道相和谐——道是宇宙运行的根本法则。" },
+    color: "from-[#0d2d1a] to-[#1a5c38]",
+    accent: "#4aca84",
+    icon: "☯️",
+    badge: { en: "Coming Soon", zh: "即将上线" },
   },
   {
-    icon: "🎭",
-    title: "非遗瑰宝",
-    desc: "2009年，妈祖信俗被列入联合国教科文组织人类非物质文化遗产代表作名录，举世瞩目。",
-  },
-];
-
-const stories = [
-  {
-    title: "林默娘的传说",
-    excerpt: "相传妈祖原名林默，生于北宋建隆元年，自幼聪慧异常，能预知海上风云变幻，屡次显灵救助遇难船只……",
-    href: "/history",
-  },
-  {
-    title: "湄洲祖庙",
-    excerpt: "位于福建莆田湄洲岛的妈祖祖庙，是全球妈祖信众的朝圣圣地，每年吸引数百万信众前来祭拜……",
-    href: "/temples",
-  },
-  {
-    title: "妈祖民俗",
-    excerpt: "每逢妈祖诞辰（农历三月廿三），各地宫庙举行盛大庆典，锣鼓喧天，花轿巡游，场面极为壮观……",
-    href: "/culture",
+    href: "/guan-yu",
+    soon: true,
+    en: { name: "Guan Yu", subtitle: "God of War & Brotherhood", desc: "A deified general of the Three Kingdoms era, Guan Yu is revered as the god of righteousness, brotherhood, and martial valor across Chinese culture." },
+    zh: { name: "关羽", subtitle: "武圣与义神", desc: "三国时代的神化将领，关羽被尊奉为中国文化中忠义、兄弟情义与武勇精神的化身。" },
+    color: "from-[#2d0a0a] to-[#5c1a1a]",
+    accent: "#ca4a4a",
+    icon: "⚔️",
+    badge: { en: "Coming Soon", zh: "即将上线" },
   },
 ];
 
 export default function Home() {
+  const { t } = useLang();
+
   return (
     <>
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, #1a0a00 0%, #4a1010 40%, #8B1A1A 70%, #6b2020 100%)",
-        }}
+        style={{ background: "linear-gradient(160deg, #0a0400 0%, #1a0a00 40%, #2d1200 100%)" }}
       >
-        {/* Pattern overlay */}
         <div
           className="absolute inset-0 opacity-5"
           style={{
-            backgroundImage:
-              "radial-gradient(circle at 25% 25%, #c9a84c 2px, transparent 2px), radial-gradient(circle at 75% 75%, #c9a84c 2px, transparent 2px)",
-            backgroundSize: "60px 60px",
+            backgroundImage: "radial-gradient(circle at 30% 30%, #c9a84c 1.5px, transparent 1.5px), radial-gradient(circle at 70% 70%, #c9a84c 1.5px, transparent 1.5px)",
+            backgroundSize: "50px 50px",
           }}
         />
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="h-px w-16 bg-[#c9a84c]/60" />
-            <span className="text-[#c9a84c] text-sm tracking-[0.4em]">海上女神</span>
-            <div className="h-px w-16 bg-[#c9a84c]/60" />
+            <div className="h-px w-16 bg-[#c9a84c]/40" />
+            <span className="text-[#c9a84c] text-xs tracking-[0.5em]">
+              {t("SPIRITUAL HERITAGE OF CHINA", "中华精神文化遗产")}
+            </span>
+            <div className="h-px w-16 bg-[#c9a84c]/40" />
           </div>
 
           <h1
-            className="text-6xl sm:text-7xl md:text-8xl font-black text-white mb-4 tracking-widest animate-fade-in-up"
-            style={{ textShadow: "0 4px 20px rgba(201,168,76,0.4)" }}
+            className="text-5xl sm:text-6xl md:text-7xl font-black text-white mb-4 tracking-wider"
+            style={{ textShadow: "0 4px 30px rgba(201,168,76,0.3)" }}
           >
-            妈祖
+            {t("Goddesses", "中华神明")}
+            <br />
+            <span className="text-[#c9a84c]">{t("in China", "文化探索")}</span>
           </h1>
 
-          <p className="text-[#c9a84c] text-xl sm:text-2xl tracking-[0.3em] mb-6 animate-fade-in-up animate-delay-200 font-light">
-            千年信仰 · 海上守护
+          <p className="text-[#f5e6c8]/70 text-base sm:text-lg leading-8 max-w-2xl mx-auto mb-10">
+            {t(
+              "Journey through China's rich spiritual landscape — from sea goddesses and warrior gods to philosophical sages who shaped civilization.",
+              "探索中国丰富的精神世界——从海洋女神、武圣神明，到塑造文明的哲学大师。"
+            )}
           </p>
 
-          <p className="text-[#f5e6c8]/80 text-base sm:text-lg leading-8 max-w-2xl mx-auto mb-10 animate-fade-in-up animate-delay-400">
-            妈祖，中国海洋文化的精神象征，以慈悲之心护佑着海上儿女。
-            她的传说跨越千年，信众遍及全球，是中华民族最广泛的民间信仰之一。
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animate-delay-600">
-            <Link
-              href="/history"
-              className="px-8 py-3 bg-[#c9a84c] text-[#1a0a00] font-bold rounded-full hover:bg-yellow-400 transition-colors tracking-wider text-sm"
-            >
-              探索历史
-            </Link>
-            <Link
-              href="/culture"
-              className="px-8 py-3 border border-[#c9a84c]/60 text-[#c9a84c] font-bold rounded-full hover:bg-[#c9a84c]/10 transition-colors tracking-wider text-sm"
-            >
-              了解文化
-            </Link>
-          </div>
-        </div>
-
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#c9a84c]/60">
-          <span className="text-xs tracking-widest">向下探索</span>
-          <div className="w-px h-8 bg-gradient-to-b from-[#c9a84c]/60 to-transparent" />
-        </div>
-      </section>
-
-      {/* Highlights */}
-      <section className="py-20 bg-[#fdf8f0]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <div className="flex items-center justify-center gap-4 mb-3">
-              <div className="h-px w-12 bg-[#c9a84c]" />
-              <span className="text-[#c9a84c] text-xs tracking-[0.4em]">妈祖精神</span>
-              <div className="h-px w-12 bg-[#c9a84c]" />
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#3d0a0a] tracking-wider">
-              信仰的力量
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {highlights.map((item) => (
-              <div
-                key={item.title}
-                className="bg-white rounded-2xl p-6 shadow-sm border border-[#e8d5b5] hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center"
+          <div className="flex justify-center gap-2">
+            {traditions.filter(t => !t.soon).map((trad) => (
+              <Link
+                key={trad.href}
+                href={trad.href}
+                className="px-5 py-2.5 bg-[#c9a84c] text-[#1a0a00] font-bold rounded-full hover:bg-yellow-400 transition-colors tracking-wider text-sm"
               >
-                <span className="text-4xl block mb-4">{item.icon}</span>
-                <h3 className="text-[#8B1A1A] font-bold text-lg mb-3 tracking-wider">
-                  {item.title}
-                </h3>
-                <p className="text-[#5a3a2a] text-sm leading-7">{item.desc}</p>
-              </div>
+                {trad.icon} {t(trad.en.name, trad.zh.name)}
+              </Link>
             ))}
           </div>
         </div>
+
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#c9a84c]/40">
+          <span className="text-xs tracking-widest">{t("EXPLORE", "向下探索")}</span>
+          <div className="w-px h-8 bg-gradient-to-b from-[#c9a84c]/40 to-transparent" />
+        </div>
       </section>
 
-      <div className="h-1 bg-gradient-to-r from-transparent via-[#c9a84c]/40 to-transparent" />
-
-      {/* Stories */}
-      <section className="py-20 bg-[#fff9f0]">
+      {/* Traditions Grid */}
+      <section className="py-20 bg-[#0f0500]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <div className="flex items-center justify-center gap-4 mb-3">
-              <div className="h-px w-12 bg-[#c9a84c]" />
-              <span className="text-[#c9a84c] text-xs tracking-[0.4em]">深入了解</span>
-              <div className="h-px w-12 bg-[#c9a84c]" />
+              <div className="h-px w-12 bg-[#c9a84c]/40" />
+              <span className="text-[#c9a84c] text-xs tracking-[0.4em]">
+                {t("TRADITIONS", "文化传统")}
+              </span>
+              <div className="h-px w-12 bg-[#c9a84c]/40" />
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#3d0a0a] tracking-wider">
-              探索妈祖世界
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-wider">
+              {t("Explore the Traditions", "探索各大传统")}
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {stories.map((story) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {traditions.map((trad) => (
               <Link
-                key={story.title}
-                href={story.href}
-                className="group bg-white rounded-2xl overflow-hidden border border-[#e8d5b5] hover:shadow-lg transition-all duration-300"
+                key={trad.href}
+                href={trad.soon ? "#" : trad.href}
+                className={`group relative rounded-2xl overflow-hidden border border-white/5 ${trad.soon ? "cursor-default" : "hover:-translate-y-1 hover:shadow-2xl"} transition-all duration-300`}
               >
-                <div className="h-3 bg-gradient-to-r from-[#8B1A1A] to-[#c9a84c]" />
-                <div className="p-6">
-                  <h3 className="text-[#3d0a0a] font-bold text-xl mb-3 tracking-wider group-hover:text-[#8B1A1A] transition-colors">
-                    {story.title}
+                <div className={`absolute inset-0 bg-gradient-to-br ${trad.color} opacity-90`} />
+                <div className="relative p-8">
+                  <div className="flex items-start justify-between mb-4">
+                    <span className="text-5xl">{trad.icon}</span>
+                    <span
+                      className="text-xs px-3 py-1 rounded-full font-medium border"
+                      style={{ borderColor: `${trad.accent}40`, color: trad.accent, background: `${trad.accent}15` }}
+                    >
+                      {t(trad.badge.en, trad.badge.zh)}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-black text-white mb-1 tracking-wider">
+                    {t(trad.en.name, trad.zh.name)}
                   </h3>
-                  <p className="text-[#7a5a3a] text-sm leading-7 mb-4">{story.excerpt}</p>
-                  <span className="text-[#c9a84c] text-sm font-medium tracking-wider group-hover:underline">
-                    阅读更多 →
-                  </span>
+                  <p className="text-sm mb-3 font-medium" style={{ color: trad.accent }}>
+                    {t(trad.en.subtitle, trad.zh.subtitle)}
+                  </p>
+                  <p className="text-white/60 text-sm leading-7">
+                    {t(trad.en.desc, trad.zh.desc)}
+                  </p>
+                  {!trad.soon && (
+                    <div className="mt-5 flex items-center gap-2 text-sm font-medium" style={{ color: trad.accent }}>
+                      {t("Explore →", "探索 →")}
+                    </div>
+                  )}
                 </div>
               </Link>
             ))}
@@ -180,19 +165,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quote Banner */}
-      <section
-        className="py-20"
-        style={{ background: "linear-gradient(135deg, #3d0a0a 0%, #8B1A1A 100%)" }}
-      >
+      {/* Quote */}
+      <section className="py-16 bg-[#0a0300]">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <span className="text-5xl text-[#c9a84c]/30 font-serif leading-none select-none">&ldquo;</span>
-          <p className="text-[#f5e6c8] text-xl sm:text-2xl leading-10 tracking-wider font-light -mt-4">
-            慈悲护众生，灵应昭四海。
-            <br />
-            千年信俗绵延，妈祖精神永传。
+          <div className="h-px w-24 bg-[#c9a84c]/30 mx-auto mb-8" />
+          <p className="text-[#f5e6c8]/60 text-sm sm:text-base leading-9 tracking-wider italic">
+            {t(
+              '"The man who moves a mountain begins by carrying away small stones." — Confucius',
+              '"登高必自卑，行远必自迩。" — 孔子'
+            )}
           </p>
-          <span className="text-5xl text-[#c9a84c]/30 font-serif leading-none select-none">&rdquo;</span>
+          <div className="h-px w-24 bg-[#c9a84c]/30 mx-auto mt-8" />
         </div>
       </section>
 
