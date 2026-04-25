@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { mazuTempleImages } from "@/data/heritageImages";
 
 const temples = [
   {
@@ -124,8 +126,19 @@ export default function TemplesPage() {
                 key={temple.name}
                 className="bg-white rounded-2xl overflow-hidden border border-[#e8d5b5] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                {/* Top bar */}
-                <div className="h-2 bg-gradient-to-r from-[#8B1A1A] to-[#c9a84c]" />
+                <div className="relative h-44 overflow-hidden bg-[#fdf0e0]">
+                  <Image
+                    src={mazuTempleImages[temple.name]}
+                    alt={`${temple.name}实景照片`}
+                    fill
+                    sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a0a00]/60 to-transparent" />
+                  <span className="absolute bottom-3 left-3 text-xs px-2 py-1 rounded-full bg-white/90 text-[#8B1A1A] font-medium">
+                    实景照片
+                  </span>
+                </div>
 
                 <div className="p-6">
                   <div className="flex items-start justify-between gap-3 mb-3">

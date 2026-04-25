@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useLang } from "@/context/LanguageContext";
+import { mazuPhotos } from "@/data/heritageImages";
 
 export default function MazuPage() {
   const { t } = useLang();
@@ -30,6 +32,15 @@ export default function MazuPage() {
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{ background: "linear-gradient(135deg, #020d18 0%, #0a2540 40%, #0d3d6e 70%, #0a2540 100%)" }}
       >
+        <Image
+          src={mazuPhotos[0].src}
+          alt={mazuPhotos[0].alt}
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 h-full w-full object-cover opacity-25"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020d18]/70 via-[#0a2540]/70 to-[#020d18]/95" />
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #4a9eca 1px, transparent 1px), radial-gradient(circle at 80% 20%, #c9a84c 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <div className="flex items-center justify-center gap-4 mb-6">
@@ -56,6 +67,50 @@ export default function MazuPage() {
             <Link href="/mazu/temples" className="px-8 py-3 border border-[#4a9eca]/60 text-[#4a9eca] font-bold rounded-full hover:bg-[#4a9eca]/10 transition-colors tracking-wider text-sm">
               {t("Sacred Temples", "宫庙圣地")}
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Photo Story */}
+      <section className="py-20 bg-[#071b2d]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-10 items-center">
+            <div>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="h-px w-12 bg-[#4a9eca]/70" />
+                <span className="text-[#4a9eca] text-xs tracking-[0.4em]">{t("REAL PHOTOS", "实景照片")}</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-black text-white tracking-wider mb-5">
+                {t("Mazu Through Your Lens", "你镜头里的妈祖")}
+              </h2>
+              <p className="text-white/65 leading-8 text-sm sm:text-base">
+                {t(
+                  "These images come from your uploaded Mazu photo set, bringing the temple gates, corridors, ritual atmosphere, and material details into the story.",
+                  "这些图片来自你上传的妈祖照片，让宫庙门楼、廊道、祭祀氛围与信仰细节真正进入页面叙事。"
+                )}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {mazuPhotos.map((photo, index) => (
+                <figure
+                  key={photo.src}
+                  className={`group relative overflow-hidden rounded-xl border border-[#4a9eca]/20 bg-[#0a2540] ${index === 1 ? "min-h-80 sm:row-span-2" : "aspect-[4/3]"}`}
+                >
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    sizes="(min-width: 1024px) 18vw, (min-width: 640px) 30vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-3 pb-3 pt-10">
+                    <p className="text-white text-sm font-bold tracking-wider">{t(photo.title.en, photo.title.zh)}</p>
+                    <p className="text-white/55 text-xs mt-1">{t(photo.caption.en, photo.caption.zh)}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </div>
       </section>

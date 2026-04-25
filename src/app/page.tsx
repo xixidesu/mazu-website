@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useLang } from "@/context/LanguageContext";
+import { confucianSiteImages, mazuPhotos } from "@/data/heritageImages";
 
 const traditions = [
   {
@@ -14,6 +16,7 @@ const traditions = [
     accent: "#4a9eca",
     icon: "⛵",
     badge: { en: "UNESCO Heritage", zh: "联合国非遗" },
+    image: mazuPhotos[0].src,
   },
   {
     href: "/confucianism",
@@ -23,6 +26,7 @@ const traditions = [
     accent: "#c9a84c",
     icon: "📜",
     badge: { en: "UNESCO Heritage", zh: "联合国非遗" },
+    image: confucianSiteImages.temple.src,
   },
   {
     href: "/taoism",
@@ -33,6 +37,7 @@ const traditions = [
     accent: "#4aca84",
     icon: "☯️",
     badge: { en: "Coming Soon", zh: "即将上线" },
+    image: undefined,
   },
   {
     href: "/guan-yu",
@@ -43,6 +48,7 @@ const traditions = [
     accent: "#ca4a4a",
     icon: "⚔️",
     badge: { en: "Coming Soon", zh: "即将上线" },
+    image: undefined,
   },
 ];
 
@@ -134,6 +140,16 @@ export default function Home() {
                 className={`group relative rounded-2xl overflow-hidden border border-white/5 ${trad.soon ? "cursor-default" : "hover:-translate-y-1 hover:shadow-2xl"} transition-all duration-300`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${trad.color} opacity-90`} />
+                {trad.image && (
+                  <Image
+                    src={trad.image}
+                    alt={t(trad.en.name, trad.zh.name)}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="absolute inset-0 h-full w-full object-cover opacity-30 transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
                 <div className="relative p-8">
                   <div className="flex items-start justify-between mb-4">
                     <span className="text-5xl">{trad.icon}</span>

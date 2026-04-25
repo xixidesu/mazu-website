@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useLang } from "@/context/LanguageContext";
 import type { Language } from "@/context/LanguageContext";
+import { confucianSiteImages } from "@/data/heritageImages";
 
 export default function ConfucianismPlacesPage() {
   const { lang, t } = useLang();
@@ -11,6 +13,7 @@ export default function ConfucianismPlacesPage() {
 
   const sites = [
     {
+      imageKey: "temple",
       name: { en: "Temple of Confucius", zh: "孔庙" },
       location: { en: "Qufu, Shandong Province", zh: "山东省曲阜市" },
       founded: { en: "478 BC — one year after Confucius' death", zh: "公元前478年——孔子逝世后一年" },
@@ -20,6 +23,7 @@ export default function ConfucianismPlacesPage() {
       highlights: { en: ["Dacheng Hall", "Apricot Altar (Xingtan)", "Shengji Hall", "1,000+ Ancient Steles"], zh: ["大成殿", "杏坛", "圣迹殿", "千余块古碑"] },
     },
     {
+      imageKey: "cemetery",
       name: { en: "Cemetery of Confucius", zh: "孔林" },
       location: { en: "North of Qufu, Shandong Province", zh: "山东省曲阜市北" },
       founded: { en: "479 BC — original burial site", zh: "公元前479年——原始墓地" },
@@ -29,6 +33,7 @@ export default function ConfucianismPlacesPage() {
       highlights: { en: ["Tomb of Confucius", "Tomb of Zisi (grandson)", "Ancient Cypress Grove", "Zigong's Cottage"], zh: ["孔子墓", "子思墓", "古柏林", "子贡庐墓处"] },
     },
     {
+      imageKey: "mansion",
       name: { en: "Kong Family Mansion", zh: "孔府" },
       location: { en: "Adjacent to the Temple, Qufu", zh: "曲阜孔庙旁" },
       founded: { en: "Song Dynasty (10th century AD)", zh: "宋代（公元10世纪）" },
@@ -38,6 +43,7 @@ export default function ConfucianismPlacesPage() {
       highlights: { en: ["Reception Hall (Zhongtang)", "Inner Residential Quarters", "Kong Family Archives", "Ancient Gardens"], zh: ["中堂", "内宅", "孔府档案", "古花园"] },
     },
     {
+      imageKey: "whiteDeer",
       name: { en: "White Deer Grotto Academy", zh: "白鹿洞书院" },
       location: { en: "Lushan, Jiangxi Province", zh: "江西省庐山" },
       founded: { en: "940 AD, restored 1179 AD by Zhu Xi", zh: "940年，1179年由朱熹重修" },
@@ -47,6 +53,7 @@ export default function ConfucianismPlacesPage() {
       highlights: { en: ["Zhu Xi's Memorial Hall", "Confucius Temple", "Ancient Library", "Mountain Setting"], zh: ["朱熹纪念堂", "先圣庙", "古藏书楼", "庐山风光"] },
     },
     {
+      imageKey: "yuelu",
       name: { en: "Yuelu Academy", zh: "岳麓书院" },
       location: { en: "Changsha, Hunan Province", zh: "湖南省长沙市" },
       founded: { en: "976 AD — Song Dynasty", zh: "976年——宋代" },
@@ -56,6 +63,7 @@ export default function ConfucianismPlacesPage() {
       highlights: { en: ["Lecture Hall (Jiangdao Tang)", "Confucius Temple", "Zhuxi Ancestral Hall", "Cultural Relics Museum"], zh: ["讲道堂", "文庙", "朱熹祠", "文物陈列室"] },
     },
     {
+      imageKey: "nanjing",
       name: { en: "Confucius Temple", zh: "夫子庙" },
       location: { en: "Nanjing, Jiangsu Province", zh: "江苏省南京市" },
       founded: { en: "1034 AD — Song Dynasty", zh: "1034年——宋代" },
@@ -111,7 +119,25 @@ export default function ConfucianismPlacesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {sites.map((site) => (
               <div key={site.name.en} className="bg-white rounded-2xl overflow-hidden border border-[#e8d5b5] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <div className="h-2 bg-gradient-to-r from-[#6b3d00] to-[#c9a84c]" />
+                <figure className="relative h-44 overflow-hidden bg-[#fdf0e0]">
+                  <Image
+                    src={confucianSiteImages[site.imageKey as keyof typeof confucianSiteImages].src}
+                    alt={t(site.name.en, site.name.zh)}
+                    fill
+                    sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-4 pb-3 pt-10">
+                    <a
+                      href={confucianSiteImages[site.imageKey as keyof typeof confucianSiteImages].source}
+                      className="text-white/80 text-xs hover:text-white"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {confucianSiteImages[site.imageKey as keyof typeof confucianSiteImages].credit}
+                    </a>
+                  </figcaption>
+                </figure>
                 <div className="p-6">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <h3 className="text-[#3d2200] font-bold text-lg tracking-wider leading-tight">
